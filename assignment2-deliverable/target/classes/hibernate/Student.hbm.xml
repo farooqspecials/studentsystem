@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="no.uio.inf5750.assignment2.model.Student" table="students">
+        <meta attribute="class-description">
+            This class contains the student details.
+        </meta>
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+
+        <property name="name" not-null="true" />
+
+         <property name="longitude" type="string" />
+		<property name="latitude" type="string" />
+		
+		
+        <set name="courses" table="courseStudent" cascade="save-update">
+            <key column="studentId"/>
+            <many-to-many class="no.uio.inf5750.assignment2.model.Course" column="courseId"/>
+        </set>
+
+        <set name="degrees" table="degreeStudent" cascade="save-update">
+            <key column="studentId"/>
+            <many-to-many class="no.uio.inf5750.assignment2.model.Degree" column="degreeId"/>
+        </set>
+    </class>
+</hibernate-mapping>
